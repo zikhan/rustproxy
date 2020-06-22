@@ -1,0 +1,16 @@
+[package]
+name = "rustproxy"
+version = "0.1.0"
+authors = ["Zovin Khanmohammed <zovinkhanmohd@hotmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-rt = "1.0.0"
+actix-web = {version="2.0", features=["openssl"]}
+log = "0.4.0"
+env_logger = "0.7.1"
+url = "2.1"
+rusoto_core = "0.44.0"
+rusoto_dynamodb = "0.44.0"

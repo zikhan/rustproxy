@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/target/debug/rustproxy",
+            "cwd": "${workspaceRoot}",
+            "sourceLanguages": ["rust"],
+            "console": "internalConsole",
+            "preLaunchTask": "Debug build"
+        }
+    ],
+    "compounds": []
+}
