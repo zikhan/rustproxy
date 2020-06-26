@@ -1,0 +1,50 @@
+version: "3.5"
+
+networks:
+  crabproxy:
+    name: crabproxy
+
+services:
+  # rstproxy:
+  #   build:
+  #     context: ..
+  #     dockerfile: Dockerfile
+  #   networks: 
+  #     - crabproxy
+  workspace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ..:/workspace
+      - /var/run/docker.sock:/var/run/docker-host.sock
+    networks:
+      - crabproxy
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    entrypoint: /usr/local/share/docker-init.sh
+    command: sleep infinity
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - 8000:8000
+    networks:
+      - crabproxy
+  dynamodb_bootstrapper:
+    image: amazon/aws-cli
+    user: 1000:1000
+    environment:
+      - DYNAMO_FOLDER=/dynamodb
+      - REGION=us-west-2
+      - ENDPOINT_URL=http://dynamodb:8000
+    volumes: 
+      - "./DynamoDB:/dynamodb"
+    networks:
+      - crabproxy
+    depends_on:
+      - dynamodb
+    entrypoint: /dynamodb/loader.sh

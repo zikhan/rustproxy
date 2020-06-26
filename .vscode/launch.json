@@ -9,8 +9,12 @@
             "cwd": "${workspaceRoot}",
             "sourceLanguages": ["rust"],
             "console": "internalConsole",
-            "preLaunchTask": "Debug build"
+            "preLaunchTask": "build",
+            "env": {
+                "RUST_BACKTRACE": "1",
+                "AWS_ACCESS_KEY_ID": "MOCK",
+                "AWS_SECRET_ACCESS_KEY": "MOCK"
+            }
         }
-    ],
-    "compounds": []
+    ]
 }
