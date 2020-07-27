@@ -1,0 +1,19 @@
+{
+    "AttributeDefinitions": [
+        {
+            "AttributeName":"PKey",
+            "AttributeType":"S"
+        }
+    ],
+    "TableName": "Backends",
+    "KeySchema": [
+        {
+            "AttributeName": "PKey",
+            "KeyType": "HASH"
+        }
+    ],
+    "ProvisionedThroughput":{
+        "ReadCapacityUnits": 100,
+        "WriteCapacityUnits": 10
+    }
+}
